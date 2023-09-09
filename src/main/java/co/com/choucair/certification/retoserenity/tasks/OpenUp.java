@@ -14,7 +14,6 @@ public class OpenUp implements Task {
         this.url = url;
     }
 
-
     public static Performable thePage(String url) {
         return Tasks.instrumented(OpenUp.class,url);
     }

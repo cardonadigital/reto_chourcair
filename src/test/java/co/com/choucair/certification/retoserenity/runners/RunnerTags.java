@@ -1,8 +1,5 @@
 package co.com.choucair.certification.retoserenity.runners;
 
-
-
-
 import io.cucumber.junit.CucumberOptions;
 import net.serenitybdd.cucumber.CucumberWithSerenity;
 import org.junit.runner.RunWith;
@@ -15,5 +12,6 @@ import org.junit.runner.RunWith;
         tags = "@LOGIN",
         plugin = {"pretty"}
 )
+
 public class RunnerTags {
 }

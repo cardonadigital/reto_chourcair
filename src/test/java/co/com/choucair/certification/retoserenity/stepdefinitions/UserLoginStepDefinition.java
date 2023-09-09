@@ -8,28 +8,21 @@ import net.serenitybdd.screenplay.actors.OnlineCast;
 
 public class UserLoginStepDefinition {
 
-    @Before
-    public void setup() throws InterruptedException {
-        OnStage.setTheStage(new OnlineCast());
-        Thread.sleep(5000);
-    }
 
-    @Given("the user TestingUser opens the browser")
-    public void the_user_testing_user_opens_the_browser() {
-        
-        OnStage.theActorCalled("ejemplo").wasAbleTo(OpenUp.thePage("https://demo.serenity.is"));
-    }
 
     @When("enter the userName: {string} and the password: {string}")
-    public void enter_the_user_name_and_the_password(String string, String string2) {
+    public void enter_the_user_name_and_the_password(String userName, String password) {
+        OnStage.theActorInTheSpotlight().attemptsTo();
     }
 
     @And("click button Sign Up")
     public void click_button_sign_up() {
+        OnStage.theActorInTheSpotlight().attemptsTo();
     }
 
     @Then("the Dashboard page will be displayed")
     public void the_dashboard_page_will_be_displayed() {
+        OnStage.theActorInTheSpotlight().should();
     }
 
 
