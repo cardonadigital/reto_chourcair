@@ -3,19 +3,22 @@ package co.com.choucair.certification.retoserenity.userinterfaces;
 
 import net.serenitybdd.screenplay.targets.Target;
 
-import static org.openqa.selenium.By.cssSelector;
-import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.*;
 
 public class ProductInterface {
 
     //home products
     public static final Target BTN_NEW_PRODUCTS = Target.the("presiona el boton nuevo producto")
-            .located(cssSelector("div.tool-button.add-button.icon-tool-button > div > span.button-inner"));
+            .located(xpath("//*[@id=\"GridDiv\"]/div[2]/div[2]/div/div[1]/div[1]/div/span"));
 
     //General
     public static final Target TXT_NAME_PRODUCT = Target
             .the("ingresar nombre del producto")
             .located(id("Serenity_Demo_Northwind_ProductDialog9_ProductName"));
+
+    public static final Target IMG_PRODUCT = Target
+            .the("to save the image of the product")
+            .located(id("//*[@id=\"Serenity_Demo_Northwind_ProductDialog9_ProductImage\"]/div/div[2]/div/div/div[1]"));
 
     //TODO: 9/09/2023 ➡️ Falta mapear la imagen del producto
 

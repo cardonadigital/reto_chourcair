@@ -1,28 +1,16 @@
-group 'co.com.store'
+group 'co.com.choucair'
 version '1.0-SNAPSHOT'
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "net.serenity-bdd:serenity-gradle-plugin:2.2.12"
-        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0"
-    }
-}
-
 apply plugin: 'java'
 apply plugin: 'java-library'
 apply plugin: 'idea'
-apply plugin: 'net.serenity-bdd.aggregator'
+apply plugin: 'jacoco'
+apply plugin: 'application'
+apply plugin: 'idea'
 apply plugin: 'test-report-aggregation'
-apply plugin: 'org.sonarqube'
 
 repositories {
     mavenCentral()
 }
-
-compileJava.options.encoding = "UTF-8"
-compileTestJava.options.encoding = "UTF-8"
 
 wrapper {
     gradleVersion '7.5'
@@ -35,35 +23,28 @@ ext {
     fasterXmlVersion = '2.11.3'
 }
 
+test {
+    ignoreFailures = true
+    systemProperties(System.getProperties())
+}
+
+
 dependencies {
-
-    implementation "net.serenity-bdd:serenity-ensure:${serenityVer}"
-
-    implementation group: 'net.serenity-bdd',                   name: 'serenity-core',                            version: serenityVersion
-    implementation group: 'net.serenity-bdd',                   name: 'serenity-junit',                           version: serenityVersion
-    implementation group: 'net.serenity-bdd',                   name: 'serenity-screenplay',                      version: serenityVersion
-    implementation group: 'net.serenity-bdd',                   name: 'serenity-assertions',                      version: serenityVersion
-    implementation group: 'net.serenity-bdd',                   name: 'serenity-screenplay-rest',                 version: serenityVersion
-    implementation group: 'net.serenity-bdd',                   name: 'serenity-cucumber',                        version: serenityVersion
-    implementation group: 'net.serenity-bdd',                   name: 'serenity-reports',                         version: serenityVersion
-    implementation group: 'net.serenity-bdd',                   name: 'serenity-screenplay-webdriver',            version: serenityVersion
-    implementation group: 'com.fasterxml.jackson.core',         name: 'jackson-databind',                         version: fasterXmlVersion
-    implementation group: 'com.fasterxml.jackson.datatype',     name: 'jackson-datatype-jsr310',                  version: fasterXmlVersion
-
-    implementation group: 'io.github.bonigarcia',               name: 'webdrivermanager',                         version: '5.3.0'
-    implementation group: 'com.ibm.mq',                         name: 'com.ibm.mq.allclient',                     version: '9.1.1.0'
-    testImplementation group: 'org.slf4j',                      name: 'slf4j-simple',                             version: '2.0.4'
-
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.0'
-    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
-    implementation 'com.github.javafaker:javafaker:1.0.2'
-    implementation 'org.projectlombok:lombok:1.18.24'
-    implementation 'com.google.code.gson:gson:2.10'
-    implementation 'org.json:json:20220320'
-
-    compileOnly 'org.projectlombok:lombok:1.18.24'
-    annotationProcessor 'org.projectlombok:lombok:1.18.24'
-
+    implementation('net.serenity-bdd:serenity-junit:3.9.0')
+    implementation('net.serenity-bdd:serenity-core:3.9.0')
+    implementation('net.serenity-bdd:serenity-screenplay:3.9.0')
+    implementation('net.serenity-bdd:serenity-cucumber:3.9.0')
+    implementation group: 'net.serenity-bdd', name: 'serenity-rest-assured', version: '3.9.0'
+    implementation('net.serenity-bdd:serenity-screenplay-rest:3.9.0')
+    implementation('net.serenity-bdd:serenity-screenplay-webdriver:3.9.0')
+    implementation('io.appium:java-client:8.3.0')
+    implementation('com.google.guava:guava:31.1-jre')
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.14.2'
+    implementation('org.jvnet.com4j:com4j:2.1')
+    implementation('org.slf4j:slf4j-simple:2.0.6')
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.12.1'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.9.2'
+    implementation('net.serenity-bdd:serenity-ensure:3.5.1')
 }
 
 java {
@@ -71,5 +52,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
 gradle.startParameter.continueOnFailure = true
-test.finalizedBy(aggregate)

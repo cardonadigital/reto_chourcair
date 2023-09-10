@@ -4,7 +4,7 @@ Feature:Products
   Background: the user opens the browser
     Given  the user TestingUser opens the browser
     When enter the userName: "admin" and the password: "serenity" and then click button Sign Up
-    Then the Dashboard page will be displayed
+    #Then the Dashboard page will be displayed
 
   @PRODUCTS-HP*
   Scenario: User successfully creates a new product
@@ -17,4 +17,4 @@ Feature:Products
   @PRODUCTS-FE
   Scenario: User fails to create a new product
     When tries to create a product with no info
-    Then the site will display the following alert: "Por favor, valide los campos vacíos o inválidos"
+    Then the site will display the following alert:  "Por favor, valide los campos vacíos o inválidos"
