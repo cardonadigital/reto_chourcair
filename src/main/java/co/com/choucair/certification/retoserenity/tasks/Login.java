@@ -2,8 +2,11 @@ package co.com.choucair.certification.retoserenity.tasks;
 
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
+import static co.com.choucair.certification.retoserenity.userinterfaces.LoginInterface.*;
+
 
 public class Login implements Task {
 
@@ -22,14 +25,13 @@ public class Login implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Click.on(LNK_LOGIN),
-                Enter.theValue(userName).into(TXT_USER),
+                Enter.theValue(userName).into(TXT_USERNAME),
                 Enter.theValue(password).into(TXT_PASSWORD),
                 Click.on(BTN_LOGIN)
         );
     }
 
-    public static Login login() {
-        return new Login();
+    public static Login login(){
+        return Tasks.instrumented(Login.class);
     }
 }

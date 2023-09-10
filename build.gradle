@@ -1,37 +1,75 @@
+group 'co.com.store'
+version '1.0-SNAPSHOT'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "net.serenity-bdd:serenity-gradle-plugin:2.2.12"
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0"
+    }
+}
+
 apply plugin: 'java'
+apply plugin: 'java-library'
 apply plugin: 'idea'
 apply plugin: 'net.serenity-bdd.aggregator'
-
-version '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
+apply plugin: 'test-report-aggregation'
+apply plugin: 'org.sonarqube'
 
 repositories {
     mavenCentral()
 }
-buildscript {
-    repositories {
 
-        mavenCentral()
-    }
-    dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.89")
-    }
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+
+wrapper {
+    gradleVersion '7.5'
+    distributionType Wrapper.DistributionType.ALL
 }
-ext{
-    serenityVersion = '2.0.90'
-    serenityCucumberVersion = '1.9.49'
+
+ext {
+    serenityVersion = '3.4.0'
+    serenityVer = '2.6.0'
+    fasterXmlVersion = '2.11.3'
 }
 
 dependencies {
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
-    testImplementation 'org.assertj:assertj-core:3.12.2'
-    testImplementation 'org.slf4j:slf4j-simple:1.7.29'
-    testImplementation "net.serenity-bdd:serenity-core:$rootProject.ext.serenityVersion"
-    testImplementation "net.serenity-bdd:serenity-junit:$rootProject.ext.serenityVersion"
-    implementation "net.serenity-bdd:serenity-screenplay:$rootProject.ext.serenityVersion"
-    implementation "net.serenity-bdd:serenity-screenplay-rest:$rootProject.ext.serenityVersion"
-    implementation "net.serenity-bdd:serenity-cucumber:$rootProject.ext.serenityCucumberVersion"
+
+    implementation "net.serenity-bdd:serenity-ensure:${serenityVer}"
+
+    implementation group: 'net.serenity-bdd',                   name: 'serenity-core',                            version: serenityVersion
+    implementation group: 'net.serenity-bdd',                   name: 'serenity-junit',                           version: serenityVersion
+    implementation group: 'net.serenity-bdd',                   name: 'serenity-screenplay',                      version: serenityVersion
+    implementation group: 'net.serenity-bdd',                   name: 'serenity-assertions',                      version: serenityVersion
+    implementation group: 'net.serenity-bdd',                   name: 'serenity-screenplay-rest',                 version: serenityVersion
+    implementation group: 'net.serenity-bdd',                   name: 'serenity-cucumber',                        version: serenityVersion
+    implementation group: 'net.serenity-bdd',                   name: 'serenity-reports',                         version: serenityVersion
+    implementation group: 'net.serenity-bdd',                   name: 'serenity-screenplay-webdriver',            version: serenityVersion
+    implementation group: 'com.fasterxml.jackson.core',         name: 'jackson-databind',                         version: fasterXmlVersion
+    implementation group: 'com.fasterxml.jackson.datatype',     name: 'jackson-datatype-jsr310',                  version: fasterXmlVersion
+
+    implementation group: 'io.github.bonigarcia',               name: 'webdrivermanager',                         version: '5.3.0'
+    implementation group: 'com.ibm.mq',                         name: 'com.ibm.mq.allclient',                     version: '9.1.1.0'
+    testImplementation group: 'org.slf4j',                      name: 'slf4j-simple',                             version: '2.0.4'
+
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.0'
+    implementation group: 'log4j', name: 'log4j', version: '1.2.17'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation 'org.projectlombok:lombok:1.18.24'
+    implementation 'com.google.code.gson:gson:2.10'
+    implementation 'org.json:json:20220320'
+
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
 
 }
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 gradle.startParameter.continueOnFailure = true
+test.finalizedBy(aggregate)
