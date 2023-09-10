@@ -1,7 +1,7 @@
 @LOGIN
 Feature:Login
 
-  Background: the user open the browser
+  Background: the user opens the browser
     Given  the user TestingUser opens the browser
 
   @LOGIN-HP*

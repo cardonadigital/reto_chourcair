@@ -30,8 +30,8 @@ wrapper {
 }
 
 ext {
-    serenityVersion = '3.4.0'
-    serenityVer = '2.6.0'
+    serenityVersion = '3.9.0'
+    serenityVer = '3.9.0'
     fasterXmlVersion = '2.11.3'
 }
 

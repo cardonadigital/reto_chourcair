@@ -4,7 +4,8 @@ import io.cucumber.java.en.*;
 import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actors.OnStage;
 
-import static co.com.choucair.certification.retoserenity.questions.ValidateMessage.validateMessage;
+import static co.com.choucair.certification.retoserenity.questions.ValidateHome.validateHome;
+import static co.com.choucair.certification.retoserenity.questions.ValidateLoginAlert.validateMessage;
 import static co.com.choucair.certification.retoserenity.tasks.Login.login;
 
 public class UserLoginStepDefinition {
@@ -21,7 +22,9 @@ public class UserLoginStepDefinition {
 
     @Then("the Dashboard page will be displayed")
     public void the_dashboard_page_will_be_displayed() {
-        OnStage.theActorInTheSpotlight().should();
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(
+                validateHome()
+        ));
     }
 
 
