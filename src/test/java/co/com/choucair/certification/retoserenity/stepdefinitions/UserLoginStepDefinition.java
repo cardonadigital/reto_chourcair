@@ -1,14 +1,10 @@
 package co.com.choucair.certification.retoserenity.stepdefinitions;
 
-import co.com.choucair.certification.retoserenity.questions.ValidateAlert;
-import co.com.choucair.certification.retoserenity.tasks.Login;
-import co.com.choucair.certification.retoserenity.tasks.OpenUp;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.*;
 import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actors.OnStage;
-import net.serenitybdd.screenplay.actors.OnlineCast;
 
+import static co.com.choucair.certification.retoserenity.questions.ValidateMessage.validateMessage;
 import static co.com.choucair.certification.retoserenity.tasks.Login.login;
 
 public class UserLoginStepDefinition {
@@ -38,8 +34,10 @@ public class UserLoginStepDefinition {
 
 
     @Then("the site will display the following alert: {string}")
-    public void theSiteWillDisplayTheFollowingAlert(String string) {
-        //OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(ValidateAlert));
+    public void theSiteWillDisplayTheFollowingAlert(String expectedAlert) {
+        OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(
+                validateMessage(expectedAlert)
+        ));
     }
 
 

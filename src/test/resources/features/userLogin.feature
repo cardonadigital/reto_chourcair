@@ -12,4 +12,4 @@ Feature:Login
   @LOGIN-FE
   Scenario: User failed to login in the site with wrong credentials
     When enter the userName: "admin" enter the password: "wrongPassword" and then click button Sign Up
-    Then the site will display the following alert: "Invalid username or password"
+    Then the site will display the following alert: "Invalid username or password!"
