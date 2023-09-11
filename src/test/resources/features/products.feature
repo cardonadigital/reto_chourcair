@@ -9,10 +9,10 @@ Feature:Products
   @PRODUCTS-HP
   Scenario: User successfully creates a new product
     When fill the form wit the following information
-      | ProductName | Vendor                             | Category | Units |
-      | Test1       | Cooperativa de Quesos 'Las Cabras' | Produce  | 12    |
+      | ProductName | Units |
+      | Test2       | 12    |
     And filter the products by ID
-    Then the product "Test1" must be displayed
+    Then the product "Test2" must be displayed
 
   @PRODUCTS-FE
   Scenario: User fails to create a new product

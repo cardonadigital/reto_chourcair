@@ -8,19 +8,19 @@ import static org.openqa.selenium.By.*;
 
 public class LoginInterface {
 
-    public static final Target TXT_USERNAME=Target
-            .the("ingresar nombre de usuario")
+    public static final Target TXT_USERNAME = Target
+            .the("where the user enter the username")
             .located(id("LoginPanel0_Username"));
 
-    public static final Target TXT_PASSWORD=Target
-            .the("ingresar contraseña ")
+    public static final Target TXT_PASSWORD = Target
+            .the("where the user enter the password")
             .located(id("LoginPanel0_Password"));
 
-    public static final Target BTN_LOGIN=Target
-            .the("inicia sesion")
+    public static final Target BTN_LOGIN = Target
+            .the("load seccion")
             .located(id("LoginPanel0_LoginButton"));
 
-    public static final Target ALERT_MISSING_LOGIN_FIELDS=Target
-            .the("alert")
+    public static final Target ALERT_MISSING_LOGIN_FIELDS = Target
+            .the("alert when there are some missing fields")
             .located(className("toast-message"));
 }

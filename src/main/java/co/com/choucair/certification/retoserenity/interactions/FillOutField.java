@@ -5,15 +5,12 @@ import net.serenitybdd.screenplay.Interaction;
 import net.serenitybdd.screenplay.actions.Clear;
 import net.serenitybdd.screenplay.actions.Enter;
 import net.serenitybdd.screenplay.targets.Target;
-import org.mockito.internal.matchers.Any;
 
-import static co.com.choucair.certification.retoserenity.userinterfaces.ProductInterface.TXT_NAME_PRODUCT;
 
 public class FillOutField implements Interaction {
 
-    private static Target target;
-    private static String data;
-    private static Integer number;
+    private Target target;
+    private String data;
 
 
     public FillOutField(Target target, String data) {

@@ -14,6 +14,6 @@ public class Transversal {
 
     @Given("the user TestingUser opens the browser")
     public void the_user_testing_user_opens_the_browser() {
-        OnStage.theActorCalled("ejemplo").wasAbleTo(OpenUp.thePage("https://demo.serenity.is"));
+        OnStage.theActorCalled("TestingUser").wasAbleTo(OpenUp.thePage("https://demo.serenity.is"));
     }
 }

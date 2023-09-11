@@ -5,6 +5,9 @@ import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.Tasks;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actions.Enter;
+
+import static co.com.choucair.certification.retoserenity.interactions.ClickElement.clickOn;
+import static co.com.choucair.certification.retoserenity.interactions.FillOutField.fillOutField;
 import static co.com.choucair.certification.retoserenity.userinterfaces.LoginInterface.*;
 
 
@@ -17,6 +20,7 @@ public class Login implements Task {
         this.userName = userName;
         return this;
     }
+
     public Login whithPassword(String password) {
         this.password = password;
         return this;
@@ -27,13 +31,13 @@ public class Login implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-                Enter.theValue(userName).into(TXT_USERNAME),
-                Enter.theValue(password).into(TXT_PASSWORD),
-                Click.on(BTN_LOGIN)
+                fillOutField(TXT_USERNAME, userName),
+                fillOutField(TXT_PASSWORD, password),
+                clickOn(BTN_LOGIN)
         );
     }
 
-    public static Login login(){
+    public static Login login() {
         return Tasks.instrumented(Login.class);
     }
 }

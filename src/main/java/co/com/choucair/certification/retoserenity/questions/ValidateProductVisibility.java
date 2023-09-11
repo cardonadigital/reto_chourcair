@@ -12,6 +12,8 @@ import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
+import static co.com.choucair.certification.retoserenity.interactions.ScrollToElement.scrollToElement;
+
 public class ValidateProductVisibility implements Question<Boolean> {
     private WebDriver driver = Serenity.getDriver();
 
@@ -25,7 +27,8 @@ public class ValidateProductVisibility implements Question<Boolean> {
     @Override
     public Boolean answeredBy(Actor actor) {
         String xpath = String.format("//a[contains(text(), '%s')]", productName);
-        List<WebElementFacade> elements = Target.the(xpath).located(By.xpath("//a[contains(text(), 'P')]")).resolveAllFor(actor);
+        List<WebElementFacade> elements = Target.the("").located(By.xpath(xpath)).resolveAllFor(actor);
+        scrollToElement(elements.get(0).getElement());
         Integer matchedObjects = elements.size();
         System.out.println(matchedObjects + xpath + elements);
         return matchedObjects != 0;

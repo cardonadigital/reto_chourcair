@@ -11,7 +11,6 @@ import static co.com.choucair.certification.retoserenity.tasks.Login.login;
 public class UserLoginStepDefinition {
 
 
-
     @When("enter the userName: {string} and the password: {string} and then click button Sign Up")
     public void enter_the_user_name_and_the_password(String userName, String password) {
         OnStage.theActorInTheSpotlight().attemptsTo(

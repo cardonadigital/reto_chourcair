@@ -10,7 +10,7 @@ import static co.com.choucair.certification.retoserenity.userinterfaces.HomeInte
 public class ValidateHome implements Question<Boolean> {
 
 
-    public ValidateHome(){
+    public ValidateHome() {
     }
 
     public static ValidateHome validateHome() {

@@ -15,7 +15,7 @@ public class OpenUp implements Task {
     }
 
     public static Performable thePage(String url) {
-        return Tasks.instrumented(OpenUp.class,url);
+        return Tasks.instrumented(OpenUp.class, url);
     }
 
     @Override

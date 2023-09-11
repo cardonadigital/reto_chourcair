@@ -22,7 +22,7 @@ public class ProductsStepDefinition {
         List<List<String>> data = dataTable.cells();
         OnStage.theActorInTheSpotlight().attemptsTo(
                 createProduct()
-                        .withInfo(data.get(1).get(0), data.get(1).get(1), data.get(1).get(2), Integer.valueOf(data.get(1).get(3)))
+                        .withInfo(data.get(1).get(0), Integer.valueOf(data.get(1).get(1)))
         );
     }
 
@@ -45,10 +45,9 @@ public class ProductsStepDefinition {
     @When("tries to create a product with no info")
     public void triesToCreateAProductWithNoInfo() {
         OnStage.theActorInTheSpotlight().attemptsTo(
-                createProduct().withInfo(null, null, null, null)
+                createProduct().withInfo(null, null)
         );
     }
-
 
     @Then("the site will display the following alert:  {string}")
     public void theSiteWillDisplayTheFollowingAlert(String message) {
