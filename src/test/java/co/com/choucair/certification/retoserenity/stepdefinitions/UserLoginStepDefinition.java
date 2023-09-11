@@ -5,7 +5,7 @@ import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actors.OnStage;
 
 import static co.com.choucair.certification.retoserenity.questions.ValidateHome.validateHome;
-import static co.com.choucair.certification.retoserenity.questions.ValidateLoginAlert.validateMessage;
+import static co.com.choucair.certification.retoserenity.questions.ValidateLoginFields.validateLoginFields;
 import static co.com.choucair.certification.retoserenity.tasks.Login.login;
 
 public class UserLoginStepDefinition {
@@ -39,7 +39,7 @@ public class UserLoginStepDefinition {
     @Then("the site will display the following alert: {string}")
     public void theSiteWillDisplayTheFollowingAlert(String expectedAlert) {
         OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(
-                validateMessage(expectedAlert)
+                validateLoginFields(expectedAlert)
         ));
     }
 

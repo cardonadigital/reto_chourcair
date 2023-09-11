@@ -20,7 +20,7 @@ public class LoginInterface {
             .the("inicia sesion")
             .located(id("LoginPanel0_LoginButton"));
 
-    public static final Target ALERT=Target
+    public static final Target ALERT_MISSING_LOGIN_FIELDS=Target
             .the("alert")
             .located(className("toast-message"));
 }

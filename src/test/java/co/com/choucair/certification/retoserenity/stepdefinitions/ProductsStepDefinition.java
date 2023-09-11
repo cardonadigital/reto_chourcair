@@ -7,7 +7,9 @@ import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.GivenWhenThen;
 import net.serenitybdd.screenplay.actors.OnStage;
 
-import static co.com.choucair.certification.retoserenity.questions.ValidateLoginAlert.validateMessage;
+import java.util.List;
+
+import static co.com.choucair.certification.retoserenity.questions.ValidateProductFields.validateProductFields;
 import static co.com.choucair.certification.retoserenity.questions.ValidateProductVisibility.validateProductVisibility;
 import static co.com.choucair.certification.retoserenity.tasks.CreateProduct.createProduct;
 import static co.com.choucair.certification.retoserenity.tasks.FilterProduct.filterProduct;
@@ -16,9 +18,11 @@ public class ProductsStepDefinition {
 
 
     @When("fill the form wit the following information")
-    public void fillTheFormWitTheFollowingInformation(DataTable dataTable) throws InterruptedException {
+    public void fillTheFormWitTheFollowingInformation(DataTable dataTable) {
+        List<List<String>> data = dataTable.cells();
         OnStage.theActorInTheSpotlight().attemptsTo(
-            createProduct().withInfo("aas", "Cooperativa de Quesos 'Las Cabras'", "Produce", 12)
+                createProduct()
+                        .withInfo(data.get(1).get(0), data.get(1).get(1), data.get(1).get(2), Integer.valueOf(data.get(1).get(3)))
         );
     }
 
@@ -38,19 +42,18 @@ public class ProductsStepDefinition {
         ));
     }
 
-    /*@When("tries to create a product with no info")
+    @When("tries to create a product with no info")
     public void triesToCreateAProductWithNoInfo() {
         OnStage.theActorInTheSpotlight().attemptsTo(
-
+                createProduct().withInfo(null, null, null, null)
         );
-    }*/
+    }
 
 
-
-    /*@Then("the site will display the following alert:  {string}")
-    public void theSiteWillDisplayTheFollowingAlert(String arg0) {
+    @Then("the site will display the following alert:  {string}")
+    public void theSiteWillDisplayTheFollowingAlert(String message) {
         OnStage.theActorInTheSpotlight().should(GivenWhenThen.seeThat(
-                asa
+                validateProductFields(message)
         ));
-    }*/
+    }
 }

@@ -17,4 +17,4 @@ Feature:Products
   @PRODUCTS-FE
   Scenario: User fails to create a new product
     When tries to create a product with no info
-    Then the site will display the following alert:  "Por favor, valide los campos vacíos o inválidos"
+    Then the site will display the following alert:  "Please validate empty or invalid inputs"
