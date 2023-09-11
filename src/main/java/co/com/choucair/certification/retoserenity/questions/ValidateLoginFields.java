@@ -20,6 +20,7 @@ public class ValidateLoginFields implements Question<Boolean> {
     @Override
     public Boolean answeredBy(Actor actor) {
         String actual = Text.of(ALERT_MISSING_LOGIN_FIELDS).answeredBy(actor).toString();
-        return expected.contains(actual);
+        System.out.println(expected + actual);
+        return actual.contains(expected);
     }
 }

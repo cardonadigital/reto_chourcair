@@ -37,4 +37,8 @@ page: https://demo.serenity.is
 ___
 **Video:**
 
-link: ###########
+link: https://youtu.be/7G5JtpAo9oo
+
+**Browsers**
+the stable browser is chrome
+you can try run edge and firefox but there is a problem with the language

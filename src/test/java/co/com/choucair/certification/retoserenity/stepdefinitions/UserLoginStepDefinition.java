@@ -27,8 +27,10 @@ public class UserLoginStepDefinition {
     }
 
 
-    @When("enter the userName: {string} enter the password: {string} and then click button Sign Up")
-    public void enterTheUserName(String userName, String password) throws InterruptedException {
+    @When("no provide any credentials")
+    public void enterTheUserName()  {
+        String userName = "";
+        String password = "";
         OnStage.theActorInTheSpotlight().attemptsTo(
                 login().whithUser(userName).whithPassword(password)
         );

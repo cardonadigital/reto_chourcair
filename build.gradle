@@ -1,4 +1,4 @@
-group 'co.com.choucair'
+group 'co.com.store'
 version '1.0-SNAPSHOT'
 apply plugin: 'java'
 apply plugin: 'java-library'
