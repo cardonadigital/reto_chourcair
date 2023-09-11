@@ -6,13 +6,13 @@ Feature:Products
     When enter the userName: "admin" and the password: "serenity" and then click button Sign Up
     #Then the Dashboard page will be displayed
 
-  @PRODUCTS-HP*
+  @PRODUCTS-HP
   Scenario: User successfully creates a new product
     When fill the form wit the following information
       | ProductName | Vendor                             | Category | Units |
       | Test1       | Cooperativa de Quesos 'Las Cabras' | Produce  | 12    |
     And filter the products by ID
-    Then the product must be displayed
+    Then the product "Test1" must be displayed
 
   @PRODUCTS-FE
   Scenario: User fails to create a new product

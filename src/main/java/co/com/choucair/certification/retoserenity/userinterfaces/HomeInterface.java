@@ -18,10 +18,6 @@ public class HomeInterface {
     public static final Target BTN_PRODUCTS = Target.the("presiona opcion productos")
             .located(By.xpath("//*[@id=\"nav_menu1_2_1\"]/li[3]/a"));
 
-    //public static final WebElement BTN_NORTHWIND = webDriver.findElement(xpath("//*[@id=\"nav_menu1_2\"]/li[1]/a/i"));
-
-    /*public static final WebElement BTN_PRODUCTS = webDriver.
-            findElement(xpath("//span[contains(text(),'Productos')]"));*/
-
     public static final WebElement H1_DASHBOARD = webDriver.findElement(By.xpath("//*[contains(@class, 'content-header')]//h1"));
+    public static final Target FILTER_ID = Target.the("filter the product by Id").located(By.xpath("//span[contains(@class, 'slick-column-name') and contains(text(), 'ID')]"));
 }

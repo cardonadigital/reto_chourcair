@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         features = "src/test/resources/features",
         glue = "co.com.choucair.certification.retoserenity.stepdefinitions",
-        tags = "@PRODUCTS",
+        tags = "@PRODUCTS-HP",
         plugin = {"pretty"}
 )
 

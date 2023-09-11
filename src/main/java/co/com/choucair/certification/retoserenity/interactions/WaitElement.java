@@ -27,6 +27,6 @@ public class WaitElement implements Interaction {
     }
 
     public static WaitElement nodeIsAvailable(Target node, long noMoreThanSeconds){
-        return Tasks.instrumented(WaitElement.class, node, noMoreThanSeconds);
+        return new WaitElement(node, noMoreThanSeconds);
     }
 }
