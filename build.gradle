@@ -1,15 +1,31 @@
-group 'co.com.store'
+group ''
 version '1.0-SNAPSHOT'
+
+
 apply plugin: 'java'
 apply plugin: 'java-library'
 apply plugin: 'idea'
-apply plugin: 'jacoco'
-apply plugin: 'application'
-apply plugin: 'idea'
-apply plugin: 'test-report-aggregation'
+apply plugin: 'net.serenity-bdd.aggregator'
+apply plugin: 'org.sonarqube'
 
 repositories {
     mavenCentral()
+}
+
+buildscript {
+    repositories{
+        mavenCentral()
+    }
+    dependencies{
+        classpath("net.serenity-bdd:serenity-gradle-plugin:2.4.24")
+        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.0")
+        classpath("net.serenity-bdd:serenity-single-page-report:2.4.24")
+
+    }
+}
+
+serenity {
+    reports = ["single-page-html"]
 }
 
 wrapper {
@@ -34,6 +50,7 @@ dependencies {
     implementation('net.serenity-bdd:serenity-core:3.9.0')
     implementation('net.serenity-bdd:serenity-screenplay:3.9.0')
     implementation('net.serenity-bdd:serenity-cucumber:3.9.0')
+    implementation group: 'net.serenity-bdd', name: 'serenity-reports',      version: '3.9.0'
     implementation group: 'net.serenity-bdd', name: 'serenity-rest-assured', version: '3.9.0'
     implementation('net.serenity-bdd:serenity-screenplay-rest:3.9.0')
     implementation('net.serenity-bdd:serenity-screenplay-webdriver:3.9.0')
@@ -52,6 +69,17 @@ java {
     targetCompatibility = JavaVersion.VERSION_11
 }
 
+test {
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
+}
+test.finalizedBy(aggregate)
+gradle.startParameter.continueOnFailure = true
+
+
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 gradle.startParameter.continueOnFailure = true
+
+
+
